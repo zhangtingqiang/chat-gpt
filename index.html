@@ -240,7 +240,6 @@
                 axios.post("https://api.openai.com/v1/chat/completions", {
                     model: 'gpt-3.5-turbo',
                     messages: that.message_container,
-                    max_tokens: 4000,
                 }, {
                     headers: {
                         Authorization: `Bearer ${that.api_key}`,
@@ -267,7 +266,7 @@
                     })
                     .catch((error) => {
                         console.error(error);
-                        alert("发送失败，请检查API-KEY是否正确，或者稍后再试，也有可能是网络问题，在中国大陆网络环境可能无法使用")
+                        alert("发送失败，请检查API-KEY是否正确，或者稍后再试，也有可能是网络问题，在中国大陆网络环境可能无法使用:\n",error)
                         // 启用按钮
                         document.getElementById("sendBtn").disabled = false;
                         // 修改文字
