@@ -157,10 +157,12 @@
         <!--  -->
         <!-- 一行两个按钮 -->
         
-<!--         <div class="information" v-if="message_container.length>0">
-            <button class="btn btn-primary" @click="downloadChatRecordTxt">下载.txt聊天记录</button>
-            <button class="btn btn-primary" @click="downloadChatRecordMd">下载.md聊天记录</button>
-        </div> -->
+        <div class="information" v-if="message_container.length>0">
+            <button class="btn btn-primary" @click="clearCache">清除连续对话缓存</button>
+            <button class="btn btn-primary" @click="setApiKey">重置Api_Key</button>
+            <!-- <button class="btn btn-primary" @click="downloadChatRecordTxt">下载.txt聊天记录</button>
+            <button class="btn btn-primary" @click="downloadChatRecordMd">下载.md聊天记录</button> -->
+        </div>
         
         
         <!-- 用户输入窗口， -->
@@ -217,6 +219,20 @@
                     localStorage.setItem('apikey', apikey);
                     this.api_key = apikey;
                 }
+            },
+
+            setApiKey: function () {                
+                    // 如果localStorage中没有apikey，则弹出提示框让用户输入
+                    var apikey = prompt("请输入API-Key：", "");
+                    // 如果用户输入为空，一直弹出提示框
+                    while (apikey === '') {
+                        alert("请输入API-Key！");
+                        apikey = prompt("请输入API-Key：", "");
+                    }
+                    // 将用户输入的apikey保存到localStorage中
+                    localStorage.setItem('apikey', apikey);
+                    this.api_key = apikey;
+                
             },
 
             send: function () {
@@ -378,6 +394,10 @@
                 //var filename = 聊天记录-年月日时分秒
                 var filename = "聊天记录" + new Date().toLocaleDateString() + "-" + new Date().toLocaleTimeString() + ".txt";
                 saveAs(blob, filename);
+            },
+            clearCache: function () {
+                var that = this;
+                that.message_container = []
             },
         }
     });
