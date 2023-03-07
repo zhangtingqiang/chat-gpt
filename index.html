@@ -156,10 +156,13 @@
         <!-- 下载聊天记录按钮 -->
         <!--  -->
         <!-- 一行两个按钮 -->
-        <div class="information" v-if="message_container.length>0">
+        
+<!--         <div class="information" v-if="message_container.length>0">
             <button class="btn btn-primary" @click="downloadChatRecordTxt">下载.txt聊天记录</button>
             <button class="btn btn-primary" @click="downloadChatRecordMd">下载.md聊天记录</button>
-        </div>
+        </div> -->
+        
+        
         <!-- 用户输入窗口， -->
         <h2 class="top">ChatGPT3.5-turbo</h2>
         <h2 v-if="message_container.length==0">使用说明</h2>
